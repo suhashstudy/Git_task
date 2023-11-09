@@ -8,32 +8,29 @@ branch_name = input("Enter the branch name: ")
 
 branch = repo.branches[branch_name]
 
-tree = branch.commit.tree
+# tree = branch.commit.tree
 
-contents = []
-for blob in tree.blobs:
-    contents.append(blob.name)
+# contents = []
+# for blob in tree.blobs:
+#     contents.append(blob.name)
 
-print(contents)
+# print(contents)
+
+commit_hash = branch.commit.hexsha
+
+commit_iterator = repo.iter_commits(commit_hash)
+
+directories = []
+for commit in commit_iterator:
+    tree = commit.tree
+    print(tree.blobs)
+
+    # for blob in tree.blobs:
+    #     if blob.name.endswith("/"):
+    #         directories.append(blob.name[:-1])
 
 
-# for f in branch:
-#     print(branch)
 
-# print("Folders in branch '%s':" % branch_name)
-# print(folders)
-
-# extracted_branch_names = []
-
-# for branch_name in branches:
-#     print(branch_name)
-#     # split_branch_name = branch_name.rsplit('/', 1)
-
-#     # extracted_branch_name = split_branch_name[-1].replace('\"', '')
-
-#     # extracted_branch_names.append(extracted_branch_name)
-
-# # print(extracted_branch_names)
 
 
 
