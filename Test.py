@@ -8,16 +8,13 @@ branch_name = input("Enter the branch name: ")
 
 branch = repo.branches[branch_name]
 
-# folders = [f.name for f in branch.commit.tree.blobs if f.is_dir()]
-
 tree = branch.commit.tree
 
-directories = []
+contents = []
 for blob in tree.blobs:
-    if blob.name.endswith("/"):
-        directories.append(blob.name[:-1])
+    contents.append(blob.name)
 
-print(tree.blobs)
+print(contents)
 
 
 # for f in branch:
