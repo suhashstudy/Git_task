@@ -1,6 +1,6 @@
 
 import streamlit as st
-from Git_module import calling_function
+from Git_module_1 import calling_function
 
 def main():
     st.title("Your Streamlit App")
