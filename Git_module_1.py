@@ -1,3 +1,4 @@
+import streamlit as st
 from git import Repo
 
 def get_branches(repo):
@@ -33,41 +34,37 @@ def get_file_content(repo, branch, file_path):
     file_content = repo.git.show(tree)
     return file_content
 
-
 def calling_function():
+    st.title("Git Repository Explorer")
+
     local_repository_path = 'D:\Git\Git_task'
     repo = Repo(local_repository_path)
 
     branches = get_branches(repo)
 
     if branches:
-        print(f"Branches: {branches}")
-
-        selected_branch = input("Enter the branch name: ")
+        selected_branch = st.selectbox("Select branch:", branches)
 
         folders = get_folders(repo, selected_branch)
 
         if folders:
-            print(f"Folders: {folders}")
-
-            selected_folder = input("Enter the folder name: ")
+            selected_folder = st.selectbox("Select folder:", folders)
 
             files = get_files(repo, selected_branch, selected_folder)
 
             if files:
-                print(f"Files: {files}")
-
-                selected_file = input("Enter the file name: ")
+                selected_file = st.selectbox("Select file:", files)
 
                 file_content = get_file_content(repo, selected_branch, selected_folder + '/' + selected_file)
 
                 if file_content:
-                    print(f"Content of {selected_folder}/{selected_file}:\n{file_content}")
+                    st.write(f"Content of {selected_folder}/{selected_file}:\n{file_content}")
+            else:
+                st.warning("No files found in the selected folder.")
         else:
-            print("No folders found.")
-        
+            st.warning("No folders found.")
     else:
-        print("Branches not found")
+        st.error("Branches not found.")
 
-# if __name__ == '__main__':
-#     calling_function()
+# if __name__ == "__main__":
+#     main()
