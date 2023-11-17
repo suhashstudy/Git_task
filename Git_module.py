@@ -33,7 +33,8 @@ def get_file_content(repo, branch, file_path):
     file_content = repo.git.show(tree)
     return file_content
 
-if __name__ == '__main__':
+
+def calling_function():
     local_repository_path = 'D:\Git\Git_task'
     repo = Repo(local_repository_path)
 
@@ -71,3 +72,6 @@ if __name__ == '__main__':
                     print(f"Content of {selected_folder}/{selected_file}:\n{file_content}")
         else:
             print("No folders found.")
+
+# if __name__ == '__main__':
+#     calling_function()
