@@ -1,14 +1,12 @@
-# app.py
 
 import streamlit as st
-from your_code import your_function  # Replace with the actual function or code you want to display
+from Git_module import calling_function
 
-# Your main Streamlit app
 def main():
     st.title("Your Streamlit App")
 
-    # Call your function and display the output
-    output = your_function()
+    
+    output = calling_function()
     st.write("Output:", output)
 
 if __name__ == "__main__":
