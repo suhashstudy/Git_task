@@ -61,11 +61,11 @@ def calling_function():
                         st.write(f"Content of {selected_folder}/{selected_file}:")
                         st.code(file_content, language='python')
             elif selected_folder is None:
-                st.write("Please select")
+                pass
             else:
                 st.warning("No files found in the selected folder.")
         elif selected_branch is None:
-                st.write("Please select")
+                pass
         else:
             st.warning("No folders found.")
     else:
