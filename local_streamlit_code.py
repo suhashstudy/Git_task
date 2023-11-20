@@ -7,7 +7,6 @@ def main():
 
     
     output = calling_function()
-    st.write("Output:", output)
 
 if __name__ == "__main__":
     main()

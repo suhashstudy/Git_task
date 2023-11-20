@@ -43,25 +43,29 @@ def calling_function():
     branches = get_branches(repo)
 
     if branches:
-        selected_branch = st.selectbox("Select branch:", branches,)
+        selected_branch = st.selectbox("Select branch:", branches,index = None)
 
         folders = get_folders(repo, selected_branch)
 
         if folders and selected_branch  is not None :
-            selected_folder = st.selectbox("Select folder:", folders,)
+            selected_folder = st.selectbox("Select folder:", folders,index = None)
 
             files = get_files(repo, selected_branch, selected_folder)
 
             if files and selected_folder  is not None :
-                selected_file = st.selectbox("Select file:", files,)
+                selected_file = st.selectbox("Select file:", files,index = None)
 
-                file_content = get_file_content(repo, selected_branch, selected_folder + '/' + selected_file)
-
-                if file_content:
-                    st.write(f"Content of {selected_folder}/{selected_file}:")
-                    st.code(file_content, language='python')
+                if selected_file is not None:
+                    file_content = get_file_content(repo, selected_branch, selected_folder + '/' + selected_file)
+                    if file_content:
+                        st.write(f"Content of {selected_folder}/{selected_file}:")
+                        st.code(file_content, language='python')
+            elif selected_folder is None:
+                st.write("Please select")
             else:
                 st.warning("No files found in the selected folder.")
+        elif selected_branch is None:
+                st.write("Please select")
         else:
             st.warning("No folders found.")
     else:
